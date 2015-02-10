@@ -116,7 +116,7 @@ size_t TwoWire::write(uint8_t data)
 {
 	if(_twiStatus == MASTER_SEND)
 	{	
-		if(_txBufferLength >= BUFF_MAX_LENGTH)
+		if(_txBufferLength >= BUFFER_LENGTH)
 		{
 			return 0;
 		}
@@ -135,7 +135,7 @@ size_t TwoWire::write(const uint8_t *data, size_t quantity )
 	{
 		for( size_t i=0; i<quantity; ++i )
 		{	
-			if(_txBufferLength >= BUFF_MAX_LENGTH)
+			if(_txBufferLength >= BUFFER_LENGTH)
 			{
 				return i;
 			}
@@ -154,9 +154,9 @@ uint8_t TwoWire::requestFrom(uint8_t addr, uint8_t quantity, uint8_t stop)
 {
 	uint8_t read_num = 0;
 
-	if(quantity > BUFF_MAX_LENGTH)
+	if(quantity > BUFFER_LENGTH)
 	{   
-		quantity = BUFF_MAX_LENGTH;
+		quantity = BUFFER_LENGTH;
 	}
 	if(quantity > 0 && twiMasterClearBus() )
 	{   
